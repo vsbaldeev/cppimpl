@@ -15,6 +15,18 @@ Integer::Impl::Impl(int value) : value_(value) {}
 
 Integer::~Integer() {}
 
+Integer::Integer(Integer&& other): impl_(std::move(other.impl_)) {
+
+}
+
+Integer& Integer::operator=(const Integer& other) {
+    if (this != &other) {
+        (*impl_).value();
+        impl_->setValue(other.value());
+    }
+    return *this;
+}
+
 int Integer::Impl::value() const {
     return value_;
 }

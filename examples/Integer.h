@@ -7,6 +7,9 @@ class Integer {
 public:
     explicit Integer(int value);
     ~Integer();
+    Integer(Integer&& other);
+    Integer& operator=(const Integer& other);
+
 
     int value() const;
     void setValue(int value);
