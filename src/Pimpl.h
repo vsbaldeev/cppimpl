@@ -36,6 +36,14 @@ public:
         return ptr_.get();
     }
 
+    T& operator*() {
+        return *ptr_;
+    }
+
+    const T& operator*() const {
+        return *ptr_;
+    };
+
 private:
     std::unique_ptr<T> ptr_;
 };
