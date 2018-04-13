@@ -15,8 +15,7 @@ public:
     Pimpl(const Pimpl& other) = delete;
 
     Pimpl(Pimpl&& other) noexcept (std::is_nothrow_move_constructible<Pointer>::value):
-        ptr_(std::move(other.ptr_))
-    {}
+        ptr_(std::move(other.ptr_)) {}
 
     Pimpl& operator=(const Pimpl& other) = delete;
 
@@ -36,11 +35,11 @@ public:
         return ptr_.get();
     }
 
-    T& operator*() noexcept {
+    T& operator*() noexcept(noexcept(*std::declval<Pointer>())) {
         return *ptr_;
     }
 
-    const T& operator*() const noexcept {
+    const T& operator*() const noexcept(noexcept(*std::declval<Pointer>())) {
         return *ptr_;
     };
 
